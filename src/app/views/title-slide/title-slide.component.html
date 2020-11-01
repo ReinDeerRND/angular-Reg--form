@@ -1,0 +1,54 @@
+<h3>
+	Введите персональные данные
+</h3>
+<form name="titleForm">
+	<table>
+		<tr>
+			<td>
+				<label for="firstname"><b>Ваше имя</b></label>
+			</td>
+			<td>
+				<input
+          [class.incorrect]="fnameValid.invalid && fnameValid.dirty"
+          type="text"
+          placeholder="Введите имя"
+          name="firstname"
+          required
+          [(ngModel)]="firstname"
+          #fnameValid="ngModel"
+        />
+      </td>
+		</tr>
+		<tr>
+			<td>
+				<label for="lastname"><b>Ваша фамилия</b></label>
+			</td>
+			<td>
+				<input
+          [class.incorrect]="lnameValid.invalid && lnameValid.dirty"
+          type="text"
+          placeholder="Введите фамилию"
+          name="lastname"
+          required
+          [(ngModel)]="lastname"
+          #lnameValid="ngModel"
+        />
+      </td>
+		</tr>
+
+		<tr align="right">
+			<td colspan="2">
+				<button *ngIf="fnameValid.valid && lnameValid.valid">
+          <a
+            routerLink="/contacts"
+            routerLinkActive="active"
+            (click)="addNames()"
+            >Далее</a
+          >
+        </button>
+			</td>
+		</tr>
+	</table>
+
+	<p></p>
+</form>

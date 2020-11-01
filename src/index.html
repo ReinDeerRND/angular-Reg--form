@@ -1,0 +1,107 @@
+<html>
+
+<head>
+	<base href="/" />
+	<script src="https://api-maps.yandex.ru/2.1/?apikey=3ad6862a-e256-4d9b-a515-5219f8cac841&lang=ru_RU"
+		type="text/javascript"></script>
+</head>
+
+<body>
+	<style>
+		#map {
+			border: 1px solid black;
+			width: 300px;
+			height: 300px;
+		}
+
+		.map-block {
+			/* display: none; */
+			position: absolute;
+			top: 5px;
+			left: 5px;
+			border: 1px solid black;
+			width: 305px;
+			height: 350px;
+			/* 400 & 300 */
+		}
+
+		.map-layer {
+			position: relative;
+			width: 305px;
+		}
+
+		.hidden {
+			display: none;
+		}
+
+		#btn_address {
+			margin: 10px;
+		}
+	</style>
+	<center>
+		<div class="map-layer hidden" id="map-layer">
+			<div class="map-block">
+				<div id="map"></div>
+				<button id="btn_address">Подтвердить адрес</button>
+			</div>
+		</div>
+	</center>
+	<my-app>Loading...</my-app>
+
+	<script>
+		function createMap() {
+        ymaps.ready(init);
+        var myMap;
+        function init() {
+          (myMap = new ymaps.Map("map", {
+            center: [54.83, 37.11],
+            zoom: 5,
+            draggable: "true",
+            preset: "islands#blueStretchyIcon"
+          })),
+            (placemark = new ymaps.Placemark(
+              [55.8, 37.72],
+              {
+                iconContent: "",
+                hintContent: "Перетащите метку и кликните, чтобы узнать адрес"
+              },
+              {
+                draggable: true,
+                preset: "twirl#blueStretchyIcon",
+                openEmptyBalloon: true
+              }
+            ));
+          myMap.controls.add("zoomControl", { left: 5, top: 5 });
+          placemark.events.add("balloonopen", function(e) {
+            placemark.properties.set(
+              "balloonContent",
+              "Идет загрузка данных..."
+            );
+            setTimeout(function() {
+              ymaps
+                .geocode(placemark.geometry.getCoordinates(), {
+                  results: 1
+                })
+                .then(function(res) {
+                  var newContent = res.geoObjects.get(0)
+                    ? res.geoObjects.get(0).properties.get("name")
+                    : "Не удалось определить адрес.";
+                  placemark.properties.set("balloonContent", newContent);
+                  document.getElementById("address").value = newContent;
+                });
+            }, 1500);
+          });
+          myMap.geoObjects.add(placemark);
+          document
+            .getElementById("btn_address")
+            .addEventListener("click", () => {
+              myMap.destroy();
+              document.getElementById("map-layer").classList.add("hidden");
+            });
+        }
+        document.getElementById("map-layer").classList.remove("hidden");
+      }
+	</script>
+</body>
+
+</html>

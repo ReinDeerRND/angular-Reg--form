@@ -1,0 +1,77 @@
+.layer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+.incorrect {
+  background-color: rgb(240, 225, 233);
+}
+a {
+  text-decoration: none;
+  color: #039;
+}
+button {
+  padding: 7px 9px;
+  border: none;
+  background-color: white;
+  border-radius: 5%;
+  margin: 5px;
+}
+button:hover {
+  background-color: #dde6e9cc;
+}
+
+label {
+  color: #039;
+  padding: 5px;
+  margin: 5px;
+}
+input {
+  color: #069;
+}
+h3 {
+  color: #039;
+}
+h2 {
+  text-transform: uppercase;
+  font-style: italic;
+  color: #039;
+}
+::-webkit-input-placeholder {
+  font-family: inherit;
+  color: #a5bfc9cc;
+  font-style: italic;
+}
+::-moz-placeholder {
+  font-family: inherit;
+  color: #a5bfc9cc;
+  font-style: italic;
+}
+:-moz-placeholder {
+  font-family: inherit;
+  color: #a5bfc9cc;
+  font-style: italic;
+}
+:-ms-input-placeholder {
+  font-family: inherit;
+  color: #a5bfc9cc;
+  font-style: italic;
+}
+
+:focus::-webkit-input-placeholder {
+  color: transparent;
+}
+:focus::-moz-placeholder {
+  color: transparent;
+}
+:focus:-moz-placeholder {
+  color: transparent;
+}
+:focus:-ms-input-placeholder {
+  color: transparent;
+}
+
+td {
+  padding: 5px;
+}

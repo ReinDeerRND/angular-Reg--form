@@ -1,0 +1,76 @@
+<h3>
+  Введите свои данные
+</h3>
+<table>
+  <tr>
+    <td>
+      <label for="email"><b>Ваш e-mail</b></label>
+    </td>
+    <td>
+      <input
+        [class.incorrect]="emailValid.invalid && emailValid.dirty"
+        type="text"
+        placeholder="example@email.com"
+        name="email"
+        required
+        pattern="[A-z0-9_.-]{1,})@([A-z0-9_.-]{1,}).([A-z]{2,8}"
+        [(ngModel)]="email"
+        #emailValid="ngModel"
+      />
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <label for="phone"><b>Ваш номер телефона</b></label>
+    </td>
+    <td>
+      <input
+        type="text"
+        placeholder="89001234567"
+        name="phone"
+        required
+        pattern="[0-9]{11}"
+        [(ngModel)]="phone"
+        #phoneValid="ngModel"
+        [class.incorrect]="phoneValid.invalid && phoneValid.dirty"
+      />
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <label for="address"><b>Ваш адрес</b></label>
+    </td>
+    <td>
+      <input
+        onclick="createMap()"
+        id="address"
+        type="text"
+        placeholder="Выбрать адрес"
+        name="address"
+        required
+        [(ngModel)]="address"
+      />
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <label for="date"><b>Дата и время</b></label>
+    </td>
+    <td>
+      <input type="date" name="date" required [(ngModel)]="date" />
+      <input type="time" required [(ngModel)]="time" name="time" />
+    </td>
+  </tr>
+  <tr>
+    <td align="right" colspan="2">
+      <button *ngIf="emailValid.valid && phoneValid.valid ">
+        <a
+          (click)="addContacts()"
+          routerLink="/agreements"
+          routerLinkActive="active"
+          >Далее</a
+        >
+      </button>
+    </td>
+  </tr>
+</table>

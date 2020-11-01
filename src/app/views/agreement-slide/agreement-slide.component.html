@@ -1,0 +1,33 @@
+<h3>
+  Согласие
+</h3>
+
+<table>
+  <tr>
+    <td>
+      <input
+        type="checkbox"
+        required
+        [checked]="agreement"
+        (change)="toggleAgr()"
+      />
+      <label>Подтверждаю согласие на обработку персональных данных</label>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <input type="checkbox" [checked]="notification" (change)="toggleNot()" />
+      <label>Оповещать, если по данному адресу найдены происшествия </label>
+    </td>
+  </tr>
+
+  <tr>
+    <td align="right" colspan="2">
+      <button [class.hidden]="!agreement">
+        <a (click)="addAgrees()" routerLink="/ready" routerLinkActive="active"
+          >Готово</a
+        >
+      </button>
+    </td>
+  </tr>
+</table>
